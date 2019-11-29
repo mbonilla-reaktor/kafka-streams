@@ -4,7 +4,9 @@
   "description": "real-time data streaming application pipeline",
   "main": "app.js",
   "scripts": {
-    "start": "node producer.js",
+    "start": "node src/producer.js",
+    "build": "rimraf dist/ && babel config.js && babel ./src --out-dir dist/ --copy-files",
+    "create-topic": "npm run build && node dist/createTopic.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +15,10 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "kafka-node": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "rimraf": "^3.0.0"
   }
 }
